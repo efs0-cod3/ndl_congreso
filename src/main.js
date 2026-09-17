@@ -22,6 +22,9 @@ function insertLead(payload){
       "Content-Type": "application/json",
       "apikey": SUPABASE_ANON_KEY,
       "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+      // `return=minimal` es obligatorio: la tabla solo tiene policy de
+      // INSERT para anon, así que pedir la fila de vuelta (RETURNING)
+      // haría fallar el insert por RLS.
       "Prefer": "return=minimal"
     },
     body: JSON.stringify(payload)
