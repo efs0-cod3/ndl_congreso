@@ -335,6 +335,30 @@
   }
   #success p b{ color: var(--ink); }
 
+  #success .ig-link{
+    display:inline-flex; align-items:center; gap:9px;
+    margin-top: 18px;
+    padding: 11px 18px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--green-050);
+    color: var(--green-800);
+    font-size: 13px; font-weight: 600;
+    text-decoration: none;
+    transition: background 140ms ease, border-color 140ms ease, transform 140ms ease;
+  }
+  #success .ig-link svg{ width:18px; height:18px; flex:none; }
+  #success .ig-link b{ color: var(--ink); font-weight: 600; }
+  #success .ig-link:hover{
+    background: var(--gold-soft);
+    border-color: var(--green-800);
+  }
+  #success .ig-link:active{ transform: translateY(1px); }
+  #success .ig-link:focus-visible{
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
   #formCard.hide{ display:none; }
 
   /* value props */
