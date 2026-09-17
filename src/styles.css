@@ -336,27 +336,32 @@
   #success p b{ color: var(--ink); }
 
   #success .ig-link{
-    display:inline-flex; align-items:center; gap:9px;
-    margin-top: 18px;
-    padding: 11px 18px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: var(--green-050);
-    color: var(--green-800);
-    font-size: 13px; font-weight: 600;
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px 16px;
+    border: none;
+    border-radius: 12px;
+    background: var(--green-900);
+    color: #F5F1E3;
+    font-size: 13.5px; font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
     text-decoration: none;
-    transition: background 140ms ease, border-color 140ms ease, transform 140ms ease;
+    transition: transform .1s ease, opacity .1s ease;
   }
-  #success .ig-link svg{ width:18px; height:18px; flex:none; }
-  #success .ig-link b{ color: var(--ink); font-weight: 600; }
-  #success .ig-link:hover{
-    background: var(--gold-soft);
-    border-color: var(--green-800);
-  }
-  #success .ig-link:active{ transform: translateY(1px); }
+  #success .ig-link svg{ width:19px; height:19px; flex:none; }
+  #success .ig-link:active{ transform: scale(0.98); }
   #success .ig-link:focus-visible{
     outline: 2px solid var(--focus);
     outline-offset: 2px;
+  }
+  #success .ig-handle{
+    margin: 8px 0 0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
   }
 
   #formCard.hide{ display:none; }
