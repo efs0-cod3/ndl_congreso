@@ -11,10 +11,14 @@ DentiGest). No requiere backend propio.
 ## Estructura
 
 ```
-index.html          Marcado de la página (entry point de Vite)
-src/styles.css      Todos los estilos
+index.html          Landing pública (entry point de Vite)
+leads.html          Dashboard interno del equipo, en /leads
+api/leads.js        Función serverless: lee y actualiza leads (solo servidor)
+src/styles.css      Estilos de la landing + tokens de color de la marca
 src/main.js         Formulario, envío a Supabase y reintentos offline
 src/config.js       URL, anon key y tabla de Supabase
+src/leads.js        Lógica del dashboard
+src/leads.css       Estilos del dashboard
 src/assets/logo.png Logo de la marca
 vite.config.js      Configuración del build y del dev server
 ```
@@ -46,6 +50,29 @@ define las variables `VITE_*`.
 La anon key es publicable por diseño: viaja al navegador del doctor. Lo que
 protege los leads son las policies de RLS de `leads_congreso_lab`, que deben
 permitir `INSERT` y **no** `SELECT` para el rol `anon`.
+
+## Dashboard de leads (`/leads`)
+
+Página protegida con clave para que el equipo vea los registros, filtre por
+canal (NFC/QR), marque a quién ya contactó, escriba por WhatsApp de un toque
+y exporte CSV.
+
+**La landing nunca puede leer los leads, y eso es a propósito.** La anon key
+que viaja al navegador solo tiene permiso de `INSERT`. El dashboard pide los
+datos a `api/leads.js`, que corre en el servidor de Vercel y es el único que
+conoce la service role key.
+
+Variables que hay que cargar en Vercel (Settings → Environment Variables),
+**sin** el prefijo `VITE_`, que las publicaría en el navegador:
+
+| Variable | Qué es |
+|---|---|
+| `SUPABASE_URL` | URL del proyecto Supabase |
+| `SUPABASE_SERVICE_ROLE_KEY` | Service role key (Supabase → Settings → API) |
+| `DASHBOARD_PASSWORD` | La clave que escribe el equipo para entrar |
+
+Para cambiar la clave: edita `DASHBOARD_PASSWORD` en Vercel y redespliega.
+Los teléfonos que ya habían entrado van a pedir la clave nueva.
 
 ## Desplegar en Vercel (proyecto nuevo, separado de DentiGest)
 
@@ -79,9 +106,8 @@ tabla de leads:
 
 ## Ver los leads capturados
 
-Mientras no haya un dashboard propio, revisa la tabla directamente en
-Supabase → proyecto `dentalgest` → Table Editor →
-`leads_congreso_lab`. Se puede exportar a CSV desde ahí mismo.
+Desde el dashboard en `/leads` (ver arriba), o directamente en Supabase →
+proyecto `dentalgest` → Table Editor → `leads_congreso_lab`.
 
 ## Actualizar la página después de publicada
 

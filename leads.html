@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Leads — Nin Dental Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="/src/assets/logo.png" />
+<link rel="stylesheet" href="/src/styles.css" />
+<link rel="stylesheet" href="/src/leads.css" />
+</head>
+<body class="leads-body">
+
+<div class="leads-wrap">
+
+  <!-- Pantalla de clave -->
+  <section id="login" class="login-card">
+    <img src="/src/assets/logo.png" alt="Nin Dental Lab" class="login-logo" />
+    <h1>Leads del congreso</h1>
+    <p class="login-hint">Acceso solo para el equipo de Nin Dental Lab.</p>
+    <form id="loginForm" autocomplete="off">
+      <label for="clave">Clave</label>
+      <input type="password" id="clave" name="clave" autocomplete="current-password" required />
+      <p class="login-error" id="loginError"></p>
+      <button type="submit" class="btn-primary" id="loginBtn">Entrar</button>
+    </form>
+  </section>
+
+  <!-- Dashboard -->
+  <main id="panel" hidden>
+    <header class="panel-head">
+      <div class="panel-title">
+        <img src="/src/assets/logo.png" alt="" class="panel-logo" />
+        <div>
+          <b>Leads del congreso</b>
+          <span id="actualizado">—</span>
+        </div>
+      </div>
+      <button type="button" class="btn-ghost" id="salirBtn">Salir</button>
+    </header>
+
+    <div class="stats">
+      <div class="stat"><span class="stat-num" id="statTotal">0</span><span class="stat-lbl">Total</span></div>
+      <div class="stat"><span class="stat-num" id="statPendientes">0</span><span class="stat-lbl">Por contactar</span></div>
+      <div class="stat"><span class="stat-num" id="statNfc">0</span><span class="stat-lbl">NFC</span></div>
+      <div class="stat"><span class="stat-num" id="statQr">0</span><span class="stat-lbl">QR</span></div>
+    </div>
+
+    <div class="controles">
+      <input type="search" id="buscador" placeholder="Buscar por nombre, clínica o ciudad…" />
+      <div class="filtros" id="filtros">
+        <button type="button" class="chip activo" data-filtro="todos">Todos</button>
+        <button type="button" class="chip" data-filtro="pendientes">Por contactar</button>
+        <button type="button" class="chip" data-filtro="nfc">NFC</button>
+        <button type="button" class="chip" data-filtro="qr">QR</button>
+      </div>
+      <div class="acciones">
+        <button type="button" class="btn-ghost" id="recargarBtn">Actualizar</button>
+        <button type="button" class="btn-ghost" id="csvBtn">Exportar CSV</button>
+      </div>
+    </div>
+
+    <p class="panel-error" id="panelError" hidden></p>
+    <div id="lista" class="lista"></div>
+    <p class="vacio" id="vacio" hidden>No hay leads que coincidan.</p>
+  </main>
+
+</div>
+
+<script type="module" src="/src/leads.js"></script>
+</body>
+</html>

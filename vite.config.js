@@ -1,4 +1,5 @@
 import { defineConfig } from "vite";
+import { resolve } from "node:path";
 
 export default defineConfig({
   server: {
@@ -8,6 +9,13 @@ export default defineConfig({
   },
   build: {
     outDir: "dist",
+    rollupOptions: {
+      input: {
+        // La landing pública y el dashboard interno del equipo.
+        main: resolve(__dirname, "index.html"),
+        leads: resolve(__dirname, "leads.html"),
+      },
+    },
     // La página es una sola pantalla: un solo archivo de CSS/JS pesa menos
     // que el overhead de varios chunks.
     assetsInlineLimit: 4096,
