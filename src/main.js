@@ -4,8 +4,6 @@ var PENDING_KEY = "ndl_leads_pending_v1";
 
 var params = new URLSearchParams(window.location.search);
 var fuente = (params.get("src") || params.get("fuente") || "nfc").toLowerCase();
-var srcLabels = { nfc: "NFC", qr: "QR", landing: "LINK" };
-document.getElementById("srcBadge").textContent = srcLabels[fuente] || fuente.toUpperCase();
 
 function getPending(){
   try { return JSON.parse(localStorage.getItem(PENDING_KEY) || "[]"); }
